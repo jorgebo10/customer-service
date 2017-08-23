@@ -1,23 +1,29 @@
-<appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-    <destination>localhost:5000</destination>
+<configuration debug="true">
+    <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>localhost:5000</destination>
 
-    <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-        <providers>
-            <mdc />
-            <context />
-            <logLevel />
-            <loggerName />
-            <pattern>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <mdc />
+                <context />
+                <logLevel />
+                <loggerName />
                 <pattern>
-                    {
-                    "serviceName": "customer-service"
-                    }
+                    <pattern>
+                        {
+                        "serviceName": "customer-service"
+                        }
+                    </pattern>
                 </pattern>
-            </pattern>
-            <threadName />
-            <message />
-            <logstashMarkers />
-            <stackTrace />
-        </providers>
-    </encoder>
-</appender>
+                <threadName />
+                <message />
+                <logstashMarkers />
+                <stackTrace />
+            </providers>
+        </encoder>
+    </appender>
+
+    <root level="all">
+        <appender-ref ref="logstash"/>
+    </root>
+</configuration>
