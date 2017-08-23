@@ -4,7 +4,8 @@ import customer.intercomm.AccountClient;
 import customer.model.Account;
 import customer.model.Customer;
 import customer.model.CustomerType;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class Api {
     @Autowired
     private AccountClient accountClient;
 
-    protected Logger logger = Logger.getLogger(Api.class.getName());
+    protected static Logger logger = LoggerFactory.getLogger(Api.class.getName());
 
     private List<Customer> customers;
 
